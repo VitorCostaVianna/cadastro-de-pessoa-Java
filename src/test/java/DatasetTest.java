@@ -56,10 +56,16 @@ public class DatasetTest {
         dataset.replacePessoa(pessoa, pessoaNova);
 
         assertEquals(2 , Dataset.size(), "Teste se o tamanho permaneceu o mesmo");
-        assertEquals(pessoaNova.getNome(), dataset.getPessoaByName(pessoaNova.getNome()), "Testando se a pessoa nova esta no vetor ");
+        assertEquals(pessoaNova.getNome(), dataset.getPessoaByName(pessoaNova.getNome()).getNome(), "Testando se a pessoa nova esta no vetor ");
         assertEquals(null, dataset.getPessoaByName(pessoa.getNome()), "Testando se a pessoa original foi substituida");
     }
 
+    @Test
+    void testRemoveAll(){
+        dataset.removeAll();
+        assertEquals(0, Dataset.size(), "Verificando se o tamanho foi zerado");
+        assertEquals(null, dataset.getPessoaByName(pessoa.getNome()), "Verificando se a pessoa foi removida");
+    }
     @Test
     void testAvgAltura() {
 

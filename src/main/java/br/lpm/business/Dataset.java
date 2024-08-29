@@ -38,7 +38,6 @@ public class Dataset {
   public void replacePessoa(Pessoa oldPessoa, Pessoa newPessoa) {
     for (int j = 0; j < size(); j++) {
       if (oldPessoa.equals(pessoas[j])) {
-        pessoas[j] = null;
         pessoas[j] = newPessoa;
         break;
       }
