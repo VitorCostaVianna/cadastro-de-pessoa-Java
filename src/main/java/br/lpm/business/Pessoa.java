@@ -18,9 +18,10 @@ public class Pessoa {
   private boolean feliz;
   private Moradia moradia;
 
-  public Pessoa(){
+  public Pessoa() {
     this.setNome("Nome Padrao");
   }
+
   public Pessoa(
       String nome,
       LocalDate dataDeNascimento,

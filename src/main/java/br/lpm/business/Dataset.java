@@ -7,7 +7,7 @@ public class Dataset {
 
   public Dataset() {
     pessoas = new Pessoa[MAX_PESSOAS];
-   }
+  }
 
   public void addPessoa(Pessoa pessoa) {
     if (size() < MAX_PESSOAS) {
@@ -99,10 +99,14 @@ public class Dataset {
 
   public float avgAltura() {
     float sum = 0;
+    int total = 0;
     for (int j = 0; j < size(); j++) {
-      sum += pessoas[j].getAltura();
+      if ((Float) pessoas[j].getAltura() != null) {
+        sum += pessoas[j].getAltura();
+        total++;
+      }
     }
-    return sum / size();
+    return sum / (float) total;
   }
 
   public float maxPeso() {
@@ -114,7 +118,7 @@ public class Dataset {
           maxPeso = pessoas[j].getPeso();
         }
       }
-      return maxPeso;
+      return (float) maxPeso;
     }
     return -1;
   }
@@ -135,10 +139,14 @@ public class Dataset {
 
   public float avgPeso() {
     float sum = 0;
+    int total = 0;
     for (int j = 0; j < size(); j++) {
-      sum += pessoas[j].getPeso();
+      if ((Integer) pessoas[j].getPeso() != null) {
+        sum += pessoas[j].getPeso();
+        total++;
+      }
     }
-    return sum / size();
+    return sum / (float) total;
   }
 
   public float percentAdult() {
@@ -152,11 +160,11 @@ public class Dataset {
       if (pessoas[j].getEstadoCivil() != null) {
         total++;
         if (pessoas[j].getEstadoCivil().equals(estadoCivil)) {
-            sum++;
-          }
+          sum++;
+        }
       }
     }
-    return ( (float) sum / total) * 100;
+    return ((float) sum / total) * 100;
   }
 
   public EstadoCivil modeEstadoCivil() {
@@ -168,7 +176,7 @@ public class Dataset {
 
     float max = qtdSolteiro;
     EstadoCivil moda = EstadoCivil.SOLTEIRO;
-    
+
     if (qtdCasado > max) {
       max = qtdCasado;
       moda = EstadoCivil.CASADO;
@@ -185,7 +193,7 @@ public class Dataset {
       max = qtdDivorciado;
       moda = EstadoCivil.DIVORCIADO;
     }
-    
+
     return moda;
   }
 
@@ -196,11 +204,11 @@ public class Dataset {
       if (pessoas[j].getEscolaridade() != null) {
         total++;
         if (pessoas[j].getEscolaridade().equals(escolaridade)) {
-            sum++;
-          }
+          sum++;
+        }
       }
     }
-    return ( (float) sum / total) * 100;
+    return ((float) sum / total) * 100;
   }
 
   public Escolaridade modeEscolaridade() {
@@ -212,7 +220,7 @@ public class Dataset {
 
     float max = qtdFundamental;
     Escolaridade moda = Escolaridade.FUNDAMENTAL;
-    
+
     if (qtdMedio > max) {
       max = qtdMedio;
       moda = Escolaridade.MEDIO;
@@ -229,7 +237,7 @@ public class Dataset {
       max = qtdNenhuma;
       moda = Escolaridade.NENHUMA;
     }
-    
+
     return moda;
   }
 
@@ -244,7 +252,7 @@ public class Dataset {
         sum++;
       }
     }
-    return ((float)sum / total ) * 100;
+    return ((float) sum / total) * 100;
   }
 
   public Moradia modeMoradia() {
@@ -254,7 +262,7 @@ public class Dataset {
 
     float max = qtdAluguel;
     Moradia moda = Moradia.ALUGUEL;
-    
+
     if (qtdCasaPorpria > max) {
       max = qtdCasaPorpria;
       moda = Moradia.CASA_PROPRIA;
@@ -267,31 +275,34 @@ public class Dataset {
     return moda;
   }
 
-  public float percentHobby(){
+  public float percentHobby() {
     int withHobby = 0;
     int total = 0;
-    for (int j = 0; j < size() ;j++){
-        if (pessoas[j].getHobby() != null){
-            total++;
-            if (!pessoas[j].getHobby().equals(Hobby.NENHUM)){
-                withHobby++;
-            }
+    for (int j = 0; j < size(); j++) {
+      if (pessoas[j].getHobby() != null) {
+        total++;
+        if (!pessoas[j].getHobby().equals(Hobby.NENHUM)) {
+          withHobby++;
         }
+      }
     }
-    return ((float)(withHobby) / total) * 100;
+    return ((float) (withHobby) / total) * 100;
   }
 
-  public float percentFeliz(){
+  public float percentFeliz() {
     int isFeliz = 0;
     int notFeliz = 0;
-    for (int j = 0; j < size() ;j++){
-        if (!pessoas[j].getFeliz()){
-            notFeliz++;
+    int total = 0;
+    for (int j = 0; j < size(); j++) {
+      if ((Boolean) pessoas[j].getFeliz() != null) {
+        if (!pessoas[j].getFeliz()) {
+          notFeliz++;
+        } else {
+          isFeliz++;
         }
-        else {
-            isFeliz++;
-        }
+        total++;
+      }
     }
-    return ((float)(isFeliz - notFeliz) / size()) * 100;
+    return ((float) (isFeliz - notFeliz) / total) * 100;
   }
 }
