@@ -9,63 +9,63 @@ import br.lpm.business.Pessoa;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class App {
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     Locale.setDefault(Locale.US);
     DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    Scanner sc = new Scanner(System.in);
 
-    Pessoa pessoa[] = new Pessoa[500];
+    Pessoa[] pessoa = new Pessoa[500];
 
-    System.out.print("Digite a quantidade de pessoas que deseja cadastrar: ");
-    int qtdePessoas = sc.nextInt();
-    sc.nextLine();
+    String qtdePessoasStr =
+        JOptionPane.showInputDialog("Digite a quantidade de pessoas que deseja cadastrar: ");
+    int qtdePessoas = Integer.parseInt(qtdePessoasStr);
 
     for (int i = 0; i < qtdePessoas; i++) {
-      System.out.print("Digite seu nome: ");
-      String nome = sc.nextLine();
+      String nome = JOptionPane.showInputDialog("Digite seu nome: ");
 
-      System.out.print("Digite a data de aniversário (dd/MM/yyyy): ");
-      String dateInput = sc.next();
+      String dateInput = JOptionPane.showInputDialog("Digite a data de aniversário (dd/MM/yyyy): ");
       LocalDate dataDeAniversario = LocalDate.parse(dateInput, fmt);
-      sc.nextLine();
 
-      System.out.print("Digite o gênero (MASCULINO, FEMININO, OUTRO): ");
-      Genero genero = Genero.valueOf(sc.nextLine());
+      Genero genero =
+          Genero.valueOf(
+              JOptionPane.showInputDialog(
+                  "Digite o gênero (MASCULINO, FEMININO, NAO_BINARIO, NAO_RESPONDER): "));
 
-      System.out.print("Digite a altura (em metros, por exemplo 1.75): ");
-      Float altura = sc.nextFloat();
+      Float altura = Float.parseFloat(JOptionPane.showInputDialog("Digite a altura (em metros): "));
 
-      System.out.print("Digite o peso (em kg): ");
-      int peso = sc.nextInt();
+      int peso = Integer.parseInt(JOptionPane.showInputDialog("Digite o peso (em kg): "));
 
-      System.out.print("Digite a renda: ");
-      float renda = sc.nextFloat();
-      sc.nextLine();
+      float renda = Float.parseFloat(JOptionPane.showInputDialog("Digite a renda: "));
 
-      System.out.print("Digite a naturalidade: ");
-      String naturalidade = sc.nextLine();
+      String naturalidade = JOptionPane.showInputDialog("Digite a naturalidade: ");
 
-      System.out.print(
-          "Digite o hobby [ARTE, ESPORTE, CINEMA, LIVRO, MÚSICA, CULINÁRIA, GAME, NENHUM]: ");
-      Hobby hobby = Hobby.valueOf(sc.nextLine());
+      Hobby hobby =
+          Hobby.valueOf(
+              JOptionPane.showInputDialog(
+                  "Digite o hobby [ARTE, ESPORTE, CINEMA, LIVRO, MÚSICA, CULINÁRIA, GAME,"
+                      + " NENHUM]: "));
 
-      System.out.print("Digite o estado civil (SOLTEIRO, CASADO, DIVORCIADO, VIUVO): ");
-      EstadoCivil estadoCivil = EstadoCivil.valueOf(sc.nextLine().toUpperCase());
+      EstadoCivil estadoCivil =
+          EstadoCivil.valueOf(
+              JOptionPane.showInputDialog(
+                  "Digite o estado civil (SOLTEIRO, CASADO, DIVORCIADO, VIUVO, SEPARADO): "));
 
-      System.out.print(
-          "Digite a escolaridade (FUNDAMENTAL, MEDIO, SUPERIOR, POS_GRADUACAO, MESTRADO,"
-              + " DOUTORADO): ");
-      Escolaridade escolaridade = Escolaridade.valueOf(sc.nextLine());
+      Escolaridade escolaridade =
+          Escolaridade.valueOf(
+              JOptionPane.showInputDialog(
+                      "Digite a escolaridade (FUNDAMENTAL, MEDIO, SUPERIOR, POS_GRADUACAO,"
+                          + " NENHUMA): ")
+                  .toUpperCase());
 
-      System.out.println("Você está feliz? (true/false): ");
-      boolean feliz = sc.nextBoolean();
-      sc.nextLine();
+      boolean feliz =
+          Boolean.parseBoolean(JOptionPane.showInputDialog("Você está feliz? (true/false): "));
 
-      System.out.print("Digite o tipo de moradia [COM_FAMILIA, ALUGUEL, CASA_PROPRIA]: ");
-      Moradia moradia = Moradia.valueOf(sc.nextLine());
+      Moradia moradia =
+          Moradia.valueOf(
+              JOptionPane.showInputDialog(
+                  "Digite o tipo de moradia [COM_FAMILIA, ALUGUEL, CASA_PROPRIA]: "));
 
       pessoa[i] =
           new Pessoa(
@@ -82,8 +82,8 @@ public class App {
               feliz,
               moradia);
 
-      System.out.println(pessoa[i]);
+      JOptionPane.showMessageDialog(
+          null, pessoa[i], "Pessoa Cadastrada", JOptionPane.INFORMATION_MESSAGE);
     }
-    sc.close();
   }
 }
