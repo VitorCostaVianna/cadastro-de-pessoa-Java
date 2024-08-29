@@ -2,12 +2,12 @@ package br.lpm.business;
 
 public class Dataset {
   private Pessoa pessoas[];
-  private static final int MAX_PESSOAS = 100;
+  private static final int MAX_PESSOAS = 3;
   private static int i = 0;
 
   public Dataset() {
     pessoas = new Pessoa[MAX_PESSOAS];
-  }
+   }
 
   public void addPessoa(Pessoa pessoa) {
     if (size() < MAX_PESSOAS) {
@@ -27,7 +27,7 @@ public class Dataset {
 
   public void removePessoaByName(String name) {
     for (int j = 0; j < size(); j++) {
-      if (pessoas[j].getNome().equalsIgnoreCase(name)) {
+      if (pessoas[j].getNome() != null && pessoas[j].getNome().equalsIgnoreCase(name)) {
         pessoas[j] = null;
         i--;
         break;

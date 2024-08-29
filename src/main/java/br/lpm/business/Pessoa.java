@@ -18,6 +18,9 @@ public class Pessoa {
   private boolean feliz;
   private Moradia moradia;
 
+  public Pessoa(){
+    this.setNome("Nome Padrao");
+  }
   public Pessoa(
       String nome,
       LocalDate dataDeNascimento,
@@ -44,8 +47,6 @@ public class Pessoa {
     this.setFeliz(feliz);
     this.setMoradia(moradia);
   }
-
-  public Pessoa() {}
 
   public String getNome() {
     return nome;
