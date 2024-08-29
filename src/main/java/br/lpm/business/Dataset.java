@@ -55,6 +55,7 @@ public class Dataset {
   }
 
   public Pessoa getAll() {
+    System.out.println("Not yet implemented");
     return null;
   }
 
@@ -156,7 +157,7 @@ public class Dataset {
         sum++;
       }
     }
-    return (sum / (size() - n)) * 100;
+    return ( (float) sum / (size() - n)) * 100;
   }
 
   public EstadoCivil modeEstadoCivil() {
@@ -200,7 +201,7 @@ public class Dataset {
         sum++;
       }
     }
-    return (sum / (size() - n)) * 100;
+    return ( (float) sum / (size() - n)) * 100;
   }
 
   public Escolaridade modeEscolaridade() {
@@ -231,5 +232,72 @@ public class Dataset {
     }
     
     return moda;
+  }
+
+  public float percentMoradia(Moradia moradia) {
+    int sum = 0;
+    int n = 0;
+    for (int j = 0; j < size(); j++) {
+      if (pessoas[j].getMoradia() == null) {
+        n++;
+      }
+      if (pessoas[j].getMoradia().equals(moradia)) {
+        sum++;
+      }
+    }
+    return ((float)sum / (size() - n)) * 100;
+  }
+
+  public Moradia modeMoradia() {
+    float qtdAluguel = percentMoradia(Moradia.ALUGUEL);
+    float qtdCasaPorpria = percentMoradia(Moradia.CASA_PROPRIA);
+    float qtdComFamilia = percentMoradia(Moradia.COM_FAMILIA);
+
+    float max = qtdAluguel;
+    Moradia moda = Moradia.ALUGUEL;
+    
+    if (qtdCasaPorpria > max) {
+      max = qtdCasaPorpria;
+      moda = Moradia.CASA_PROPRIA;
+    }
+    if (qtdComFamilia > max) {
+      max = qtdComFamilia;
+      moda = Moradia.COM_FAMILIA;
+    }
+
+    return moda;
+  }
+
+  public float percentHobby(){
+    int nullHobby = 0;
+    int withOutHobby = 0;
+    int withHobby = 0;
+    for (int j = 0; j < size() ;j++){
+        if (pessoas[j].getHobby() == null){
+            nullHobby++;
+        }
+        if (!pessoas[j].getHobby().equals(Hobby.NENHUM)){
+            withHobby++;
+        }
+        else {
+            withOutHobby++;
+        }
+        
+    }
+    return ((float)(withHobby - withOutHobby) / (size() - nullHobby)) * 100;
+  }
+
+  public float percentFeliz(){
+    int isFeliz = 0;
+    int notFeliz = 0;
+    for (int j = 0; j < size() ;j++){
+        if (!pessoas[j].getFeliz()){
+            notFeliz++;
+        }
+        else {
+            isFeliz++;
+        }
+    }
+    return ((float)(isFeliz - notFeliz) / size()) * 100;
   }
 }
