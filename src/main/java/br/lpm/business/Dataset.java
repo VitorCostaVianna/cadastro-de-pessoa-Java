@@ -148,16 +148,16 @@ public class Dataset {
 
   public float percentEstadoCivil(EstadoCivil estadoCivil) {
     int sum = 0;
-    int n = 0;
+    int total = 0;
     for (int j = 0; j < size(); j++) {
-      if (pessoas[j].getEstadoCivil() == null) {
-        n++;
-      }
-      if (pessoas[j].getEstadoCivil().equals(estadoCivil)) {
-        sum++;
+      if (pessoas[j].getEstadoCivil() != null) {
+        total++;
+        if (pessoas[j].getEstadoCivil().equals(estadoCivil)) {
+            sum++;
+          }
       }
     }
-    return ( (float) sum / (size() - n)) * 100;
+    return ( (float) sum / total) * 100;
   }
 
   public EstadoCivil modeEstadoCivil() {
@@ -192,16 +192,16 @@ public class Dataset {
 
   public float percentEscolaridade(Escolaridade escolaridade) {
     int sum = 0;
-    int n = 0;
+    int total = 0;
     for (int j = 0; j < size(); j++) {
-      if (pessoas[j].getEscolaridade() == null) {
-        n++;
-      }
-      if (pessoas[j].getEscolaridade().equals(escolaridade)) {
-        sum++;
+      if (pessoas[j].getEscolaridade() != null) {
+        total++;
+        if (pessoas[j].getEscolaridade().equals(escolaridade)) {
+            sum++;
+          }
       }
     }
-    return ( (float) sum / (size() - n)) * 100;
+    return ( (float) sum / total) * 100;
   }
 
   public Escolaridade modeEscolaridade() {
@@ -236,16 +236,16 @@ public class Dataset {
 
   public float percentMoradia(Moradia moradia) {
     int sum = 0;
-    int n = 0;
+    int total = 0;
     for (int j = 0; j < size(); j++) {
       if (pessoas[j].getMoradia() == null) {
-        n++;
+        total++;
       }
       if (pessoas[j].getMoradia().equals(moradia)) {
         sum++;
       }
     }
-    return ((float)sum / (size() - n)) * 100;
+    return ((float)sum / total ) * 100;
   }
 
   public Moradia modeMoradia() {
@@ -269,22 +269,17 @@ public class Dataset {
   }
 
   public float percentHobby(){
-    int nullHobby = 0;
-    int withOutHobby = 0;
     int withHobby = 0;
+    int total = 0;
     for (int j = 0; j < size() ;j++){
-        if (pessoas[j].getHobby() == null){
-            nullHobby++;
+        if (pessoas[j].getHobby() != null){
+            total++;
+            if (!pessoas[j].getHobby().equals(Hobby.NENHUM)){
+                withHobby++;
+            }
         }
-        if (!pessoas[j].getHobby().equals(Hobby.NENHUM)){
-            withHobby++;
-        }
-        else {
-            withOutHobby++;
-        }
-        
     }
-    return ((float)(withHobby - withOutHobby) / (size() - nullHobby)) * 100;
+    return ((float)(withHobby) / total) * 100;
   }
 
   public float percentFeliz(){
