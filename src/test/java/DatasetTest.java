@@ -3,6 +3,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import br.lpm.business.Dataset;
 import br.lpm.business.Escolaridade;
 import br.lpm.business.EstadoCivil;
+import br.lpm.business.Hobby;
 import br.lpm.business.Moradia;
 import br.lpm.business.Pessoa;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,8 +18,10 @@ public class DatasetTest {
   public void setUp() throws Exception {
     pessoa = new Pessoa();
     pessoa.setNome("Beatriz");
+
     pessoa2 = new Pessoa();
     pessoa2.setNome("Vitor");
+
     dataset = new Dataset();
     dataset.addPessoa(pessoa);
     dataset.addPessoa(pessoa2);
@@ -130,6 +133,7 @@ public class DatasetTest {
   @Test
   void testModeEscolaridade() {
     Pessoa pessoa3 = new Pessoa();
+    dataset.addPessoa(pessoa3);
     pessoa.setEscolaridade(Escolaridade.SUPERIOR);
     pessoa2.setEscolaridade(Escolaridade.SUPERIOR);
     pessoa3.setEscolaridade(Escolaridade.FUNDAMENTAL);
@@ -140,6 +144,7 @@ public class DatasetTest {
   @Test
   void testModeEstadoCivil() {
     Pessoa pessoa3 = new Pessoa();
+    dataset.addPessoa(pessoa3);
     pessoa.setEstadoCivil(EstadoCivil.CASADO);
     pessoa2.setEstadoCivil(EstadoCivil.CASADO);
     pessoa3.setEstadoCivil(EstadoCivil.SEPARADO);
@@ -149,6 +154,7 @@ public class DatasetTest {
   @Test
   void testModeMoradia() {
     Pessoa pessoa3 = new Pessoa();
+    dataset.addPessoa(pessoa3);
     pessoa.setMoradia(Moradia.COM_FAMILIA);
     pessoa2.setMoradia(Moradia.COM_FAMILIA);
     pessoa3.setMoradia(Moradia.ALUGUEL);
@@ -159,19 +165,83 @@ public class DatasetTest {
   void testPercentAdult() {}
 
   @Test
-  void testPercentEscolaridade() {}
+  void testPercentEscolaridade() {
+    Pessoa pessoa3 = new Pessoa();
+    dataset.addPessoa(pessoa3);
+    pessoa.setEscolaridade(Escolaridade.SUPERIOR);
+    pessoa2.setEscolaridade(Escolaridade.SUPERIOR);
+    pessoa3.setEscolaridade(Escolaridade.FUNDAMENTAL);
+    assertEquals(
+        66.6f,
+        dataset.percentEscolaridade(Escolaridade.SUPERIOR),
+        1.0d,
+        "Verificando porcentagem escolaridade");
+
+    assertEquals(
+        0f,
+        dataset.percentEscolaridade(Escolaridade.POS_GRADUACAO),
+        "Verificando porcentagem de escolaridade não presente no vetor");
+  }
 
   @Test
-  void testPercentEstadoCivil() {}
+  void testPercentEstadoCivil() {
+    Pessoa pessoa3 = new Pessoa();
+    dataset.addPessoa(pessoa3);
+    pessoa.setEstadoCivil(EstadoCivil.CASADO);
+    pessoa2.setEstadoCivil(EstadoCivil.CASADO);
+    pessoa3.setEstadoCivil(EstadoCivil.SEPARADO);
+    assertEquals(
+        66.6f,
+        dataset.percentEstadoCivil(EstadoCivil.CASADO),
+        1.0d,
+        "Verificando porcentagem Estado Civil");
+
+    assertEquals(
+        0f,
+        dataset.percentEstadoCivil(EstadoCivil.DIVORCIADO),
+        "Verificando porcentagem de estado Civil não presente no vetor");
+  }
 
   @Test
-  void testPercentFeliz() {}
+  void testPercentFeliz() {
+    pessoa.setFeliz(true);
+    pessoa2.setFeliz(false);
+    assertEquals(50f, dataset.percentFeliz(), 1.0d, "Verificando porcentagem Feliz");
+
+    pessoa.setFeliz(false);
+    assertEquals(0f, dataset.percentFeliz(), 1.0d, "Verificando porcentagem quando ninguem é Feliz");
+  }
 
   @Test
-  void testPercentHobby() {}
+  void testPercentHobby() {
+    Pessoa pessoa3 = new Pessoa();
+    dataset.addPessoa(pessoa3);
+    pessoa.setHobby(Hobby.ESPORTE);
+    pessoa2.setHobby(Hobby.ESPORTE);
+    pessoa3.setHobby(Hobby.GAME);
+    assertEquals(100, dataset.percentHobby(), 1.0d, "Verificando porcentagem com Hobby");
+
+    pessoa.setHobby(Hobby.NENHUM);
+    pessoa2.setHobby(Hobby.NENHUM);
+    pessoa3.setHobby(Hobby.NENHUM);
+    assertEquals(0f, dataset.percentHobby(), "Verificando porcentagem sem hobby");
+  }
 
   @Test
-  void testPercentMoradia() {}
+  void testPercentMoradia() {
+    Pessoa pessoa3 = new Pessoa();
+    dataset.addPessoa(pessoa3);
+    pessoa.setMoradia(Moradia.ALUGUEL);
+    pessoa2.setMoradia(Moradia.ALUGUEL);
+    pessoa3.setMoradia(Moradia.COM_FAMILIA);
+    assertEquals(66.6F, dataset.percentMoradia(Moradia.ALUGUEL), 1.0d, "Verificando porcentagem moradia");
+
+    
+    assertEquals(
+        0f,
+        dataset.percentMoradia(Moradia.CASA_PROPRIA),
+        "Verificando porcentagem de MORADIA não presente no vetor");
+  }
 
   @Test
   void testSize() {
