@@ -20,6 +20,10 @@ public class Pessoa {
 
   public Pessoa() {
     this.setNome("Nome Padrao");
+    this.altura = 0f;
+    this.peso = 0;
+    this.renda = 0;
+
   }
 
   public Pessoa(

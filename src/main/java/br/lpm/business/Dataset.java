@@ -75,7 +75,7 @@ public class Dataset {
       float maxAltura;
       maxAltura = pessoas[0].getAltura();
       for (int j = 1; j < size(); j++) {
-        if (pessoas[j].getAltura() > maxAltura && (Float) pessoas[j].getAltura() != null) {
+        if (pessoas[j].getAltura() > maxAltura) {
           maxAltura = pessoas[j].getAltura();
         }
       }
@@ -89,7 +89,7 @@ public class Dataset {
       float minAltura;
       minAltura = pessoas[0].getAltura();
       for (int j = 1; j < size(); j++) {
-        if (pessoas[j].getAltura() < minAltura && (Float) pessoas[j].getAltura() != null) {
+        if (pessoas[j].getAltura() < minAltura) {
           minAltura = pessoas[j].getAltura();
         }
       }
@@ -102,7 +102,7 @@ public class Dataset {
     float sum = 0;
     int total = 0;
     for (int j = 0; j < size(); j++) {
-      if ((Float) pessoas[j].getAltura() != null) {
+      if (pessoas[j].getAltura() != 0) {
         sum += pessoas[j].getAltura();
         total++;
       }
@@ -115,7 +115,7 @@ public class Dataset {
       float maxPeso;
       maxPeso = pessoas[0].getPeso();
       for (int j = 1; j < size(); j++) {
-        if (pessoas[j].getPeso() > maxPeso && (Integer) pessoas[j].getPeso() != null) {
+        if (pessoas[j].getPeso() > maxPeso) {
           maxPeso = pessoas[j].getPeso();
         }
       }
@@ -129,7 +129,7 @@ public class Dataset {
       float minPeso;
       minPeso = pessoas[0].getPeso();
       for (int j = 1; j < size(); j++) {
-        if (pessoas[j].getPeso() < minPeso && (Integer) pessoas[j].getPeso() != null) {
+        if (pessoas[j].getPeso() < minPeso) {
           minPeso = pessoas[j].getPeso();
         }
       }
@@ -142,7 +142,7 @@ public class Dataset {
     float sum = 0;
     int total = 0;
     for (int j = 0; j < size(); j++) {
-      if ((Integer) pessoas[j].getPeso() != null) {
+      if (pessoas[j].getPeso() != 0) {
         sum += pessoas[j].getPeso();
         total++;
       }

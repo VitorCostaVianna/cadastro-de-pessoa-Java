@@ -1,5 +1,6 @@
 package br.lpm.main;
 
+import br.lpm.business.Dataset;
 import br.lpm.business.Escolaridade;
 import br.lpm.business.EstadoCivil;
 import br.lpm.business.Genero;
@@ -12,15 +13,15 @@ import java.util.Locale;
 import javax.swing.JOptionPane;
 
 public class App {
+
+    public static Dataset dataset = new Dataset();
   public static void main(String[] args) {
     Locale.setDefault(Locale.US);
     DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    Pessoa[] pessoa = new Pessoa[500];
-
-    String qtdePessoasStr =
+    String qtdePessoasAux =
         JOptionPane.showInputDialog("Digite a quantidade de pessoas que deseja cadastrar: ");
-    int qtdePessoas = Integer.parseInt(qtdePessoasStr);
+    int qtdePessoas = Integer.parseInt(qtdePessoasAux);
 
     for (int i = 0; i < qtdePessoas; i++) {
       String nome = JOptionPane.showInputDialog("Digite seu nome: ");
@@ -67,7 +68,7 @@ public class App {
               JOptionPane.showInputDialog(
                   "Digite o tipo de moradia [COM_FAMILIA, ALUGUEL, CASA_PROPRIA]: "));
 
-      pessoa[i] =
+      Pessoa pessoa =
           new Pessoa(
               nome,
               dataDeAniversario,
@@ -81,9 +82,9 @@ public class App {
               escolaridade,
               feliz,
               moradia);
-
+      dataset.addPessoa(pessoa);
       JOptionPane.showMessageDialog(
-          null, pessoa[i], "Pessoa Cadastrada", JOptionPane.INFORMATION_MESSAGE);
+          null, pessoa, "Pessoa Cadastrada", JOptionPane.INFORMATION_MESSAGE);
     }
   }
 }
