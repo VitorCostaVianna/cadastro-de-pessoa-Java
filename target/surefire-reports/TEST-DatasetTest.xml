@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="PessoaTest" time="0.011" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="DatasetTest" time="0.182" tests="22" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="22"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -58,9 +58,26 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="66.0"/>
   </properties>
-  <testcase name="testSetDataDeNascimento" classname="PessoaTest" time="0.006"/>
-  <testcase name="testSetAltura" classname="PessoaTest" time="0.001"/>
-  <testcase name="testSetNome" classname="PessoaTest" time="0.001"/>
-  <testcase name="testSetPeso" classname="PessoaTest" time="0.001"/>
-  <testcase name="testSetRenda" classname="PessoaTest" time="0.001"/>
+  <testcase name="testPercentEstadoCivil" classname="DatasetTest" time="0.127"/>
+  <testcase name="testReplacePessoa" classname="DatasetTest" time="0.001"/>
+  <testcase name="testSize" classname="DatasetTest" time="0.001"/>
+  <testcase name="testModeMoradia" classname="DatasetTest" time="0.002"/>
+  <testcase name="testAvgPeso" classname="DatasetTest" time="0.002"/>
+  <testcase name="testMaxAltura" classname="DatasetTest" time="0.001"/>
+  <testcase name="testAvgAltura" classname="DatasetTest" time="0.0"/>
+  <testcase name="testPercentAdult" classname="DatasetTest" time="0.001"/>
+  <testcase name="testPercentFeliz" classname="DatasetTest" time="0.001"/>
+  <testcase name="testPercentHobby" classname="DatasetTest" time="0.002"/>
+  <testcase name="testRemovePessoa" classname="DatasetTest" time="0.0"/>
+  <testcase name="testMinAltura" classname="DatasetTest" time="0.001"/>
+  <testcase name="testMaxPeso" classname="DatasetTest" time="0.0"/>
+  <testcase name="testAddPessoa" classname="DatasetTest" time="0.001"/>
+  <testcase name="testMinPeso" classname="DatasetTest" time="0.001"/>
+  <testcase name="testModeEstadoCivil" classname="DatasetTest" time="0.002"/>
+  <testcase name="testRemovePessoaByName" classname="DatasetTest" time="0.001"/>
+  <testcase name="testPercentEscolaridade" classname="DatasetTest" time="0.002"/>
+  <testcase name="testGetPessoaByName" classname="DatasetTest" time="0.001"/>
+  <testcase name="testRemoveAll" classname="DatasetTest" time="0.0"/>
+  <testcase name="testModeEscolaridade" classname="DatasetTest" time="0.0"/>
+  <testcase name="testPercentMoradia" classname="DatasetTest" time="0.001"/>
 </testsuite>

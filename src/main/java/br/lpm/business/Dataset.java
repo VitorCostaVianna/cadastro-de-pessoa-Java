@@ -1,12 +1,13 @@
 package br.lpm.business;
 
 public class Dataset {
-  private Pessoa pessoas[];
+  private Pessoa[] pessoas;
   private static final int MAX_PESSOAS = 3;
-  private static int i = 0;
+  private int i ;
 
   public Dataset() {
     pessoas = new Pessoa[MAX_PESSOAS];
+    this.i = 0;
   }
 
   public void addPessoa(Pessoa pessoa) {
@@ -19,24 +20,25 @@ public class Dataset {
   public void removePessoa(Pessoa pessoa) {
     for (int j = 0; j < size(); j++) {
       if (pessoa.equals(pessoas[j])) {
-        for (int p = j ; p < size() -1 ; p++ )
-        pessoas[p] = pessoas[p+1];
-       }
-       pessoas[size() -1 ] = null;
-       i--;
-       break;
+        for (int p = j; p < size() - 1; p++) {
+          pessoas[p] = pessoas[p + 1];
+        }
+        pessoas[size() - 1] = null;
+        i--;
+        break; 
+      }
     }
   }
 
   public void removePessoaByName(String name) {
     for (int j = 0; j < size(); j++) {
-      if (pessoas[j].getNome() != null && pessoas[j].getNome().equalsIgnoreCase(name)) {
-        for (int p = j ; p < size() -1  ; p++ ){
-          pessoas[p] = pessoas[p++];
+      if (pessoas[j] != null && pessoas[j].getNome().equalsIgnoreCase(name)) {
+        for (int p = j; p < size() - 1; p++) {
+          pessoas[p] = pessoas[p + 1];
         }
-        pessoas[size() -1 ] = null;
-        i--;
-        break;
+        pessoas[size() - 1] = null; 
+        i--; 
+        break; 
       }
     }
   }
@@ -52,35 +54,30 @@ public class Dataset {
 
   public Pessoa getPessoaByName(String name) {
     for (int j = 0; j < size(); j++) {
-      if (pessoas[j].getNome().equalsIgnoreCase(name)) {
+      if (pessoas[j] != null && pessoas[j].getNome().equalsIgnoreCase(name)) {
         return pessoas[j];
       }
     }
     return null;
   }
-
-  public Pessoa getAll() {
-    System.out.println("Not yet implemented");
-    return null;
-  }
-
+  
   public void removeAll() {
     for (int j = 0; j < size(); j++) {
       pessoas[j] = null;
     }
-    i = 0;
+    i = 0; 
   }
 
-  public static int size() {
+  public int size() {
     return i;
   }
 
   public float maxAltura() {
-    if (size() > 0) {
+    if (size() > 0 && pessoas[0] != null) {
       float maxAltura;
       maxAltura = pessoas[0].getAltura();
       for (int j = 1; j < size(); j++) {
-        if (pessoas[j].getAltura() > maxAltura) {
+        if (pessoas[j] != null && pessoas[j].getAltura() > maxAltura) {
           maxAltura = pessoas[j].getAltura();
         }
       }
@@ -90,11 +87,11 @@ public class Dataset {
   }
 
   public float minAltura() {
-    if (size() > 0) {
+    if (size() > 0 && pessoas[0] != null) {
       float minAltura;
       minAltura = pessoas[0].getAltura();
       for (int j = 1; j < size(); j++) {
-        if (pessoas[j].getAltura() < minAltura) {
+        if (pessoas[j] != null && pessoas[j].getAltura() < minAltura) {
           minAltura = pessoas[j].getAltura();
         }
       }
@@ -107,7 +104,7 @@ public class Dataset {
     float sum = 0;
     int total = 0;
     for (int j = 0; j < size(); j++) {
-      if (pessoas[j].getAltura() != 0) {
+      if (pessoas[j] != null && pessoas[j].getAltura() != 0) {
         sum += pessoas[j].getAltura();
         total++;
       }
@@ -116,11 +113,11 @@ public class Dataset {
   }
 
   public float maxPeso() {
-    if (size() > 0) {
+    if (size() > 0 && pessoas[0] != null) {
       float maxPeso;
       maxPeso = pessoas[0].getPeso();
       for (int j = 1; j < size(); j++) {
-        if (pessoas[j].getPeso() > maxPeso) {
+        if (pessoas[j] != null && pessoas[j].getPeso() > maxPeso) {
           maxPeso = pessoas[j].getPeso();
         }
       }
@@ -130,11 +127,11 @@ public class Dataset {
   }
 
   public float minPeso() {
-    if (size() > 0) {
+    if (size() > 0 && pessoas[0] != null) {
       float minPeso;
       minPeso = pessoas[0].getPeso();
       for (int j = 1; j < size(); j++) {
-        if (pessoas[j].getPeso() < minPeso) {
+        if (pessoas[j] != null && pessoas[j].getPeso() < minPeso) {
           minPeso = pessoas[j].getPeso();
         }
       }
@@ -147,7 +144,7 @@ public class Dataset {
     float sum = 0;
     int total = 0;
     for (int j = 0; j < size(); j++) {
-      if (pessoas[j].getPeso() != 0) {
+      if (pessoas[j] != null && pessoas[j].getPeso() != 0) {
         sum += pessoas[j].getPeso();
         total++;
       }
@@ -163,7 +160,7 @@ public class Dataset {
     int sum = 0;
     int total = 0;
     for (int j = 0; j < size(); j++) {
-      if (pessoas[j].getEstadoCivil() != null) {
+      if (pessoas[j] != null && pessoas[j].getEstadoCivil() != null) {
         total++;
         if (pessoas[j].getEstadoCivil().equals(estadoCivil)) {
           sum++;
@@ -207,7 +204,7 @@ public class Dataset {
     int sum = 0;
     int total = 0;
     for (int j = 0; j < size(); j++) {
-      if (pessoas[j].getEscolaridade() != null) {
+      if (pessoas[j] != null && pessoas[j].getEscolaridade() != null) {
         total++;
         if (pessoas[j].getEscolaridade().equals(escolaridade)) {
           sum++;
@@ -251,11 +248,11 @@ public class Dataset {
     int sum = 0;
     int total = 0;
     for (int j = 0; j < size(); j++) {
-      if (pessoas[j].getMoradia() != null) {
+      if (pessoas[j] != null && pessoas[j].getMoradia() != null) {
         total++;
-      }
-      if (pessoas[j].getMoradia().equals(moradia)) {
-        sum++;
+        if (pessoas[j].getMoradia().equals(moradia)) {
+          sum++;
+        }
       }
     }
     return ((float) sum / total) * 100;
@@ -285,7 +282,7 @@ public class Dataset {
     int withHobby = 0;
     int total = 0;
     for (int j = 0; j < size(); j++) {
-      if (pessoas[j].getHobby() != null) {
+      if (pessoas[j] != null && pessoas[j].getHobby() != null) {
         total++;
         if (!pessoas[j].getHobby().equals(Hobby.NENHUM)) {
           withHobby++;
@@ -299,7 +296,7 @@ public class Dataset {
     int isFeliz = 0;
     int total = 0;
     for (int j = 0; j < size(); j++) {
-      if (pessoas[j].getFeliz() == true) {
+      if (pessoas[j] != null && pessoas[j].getFeliz() == true) {
         isFeliz++;
       }
       total++;

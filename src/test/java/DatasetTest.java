@@ -30,10 +30,10 @@ public class DatasetTest {
   @Test
   void testAddPessoa() {
     dataset.addPessoa(new Pessoa());
-    assertEquals(3, Dataset.size(), "Adicionando dentro do limite de MAX_PESSOA = 3 ");
+    assertEquals(3, dataset.size(), "Adicionando dentro do limite de MAX_PESSOA = 3 ");
 
     dataset.addPessoa(new Pessoa());
-    assertEquals(3, Dataset.size(), "Adicionando fora do limite de MAX_PESSOA");
+    assertEquals(3, dataset.size(), "Adicionando fora do limite de MAX_PESSOA");
   }
 
   @Test
@@ -45,7 +45,7 @@ public class DatasetTest {
   @Test
   void testRemovePessoa() {
     dataset.removePessoa(pessoa2);
-    assertEquals(1, Dataset.size(), "Testando o tamanho do vetor apos a remoção por parametro");
+    assertEquals(1, dataset.size(), "Testando o tamanho do vetor apos a remoção por parametro");
     assertEquals(
         null,
         dataset.getPessoaByName(pessoa2.getNome()),
@@ -55,7 +55,7 @@ public class DatasetTest {
   @Test
   void testRemovePessoaByName() {
     dataset.removePessoaByName(pessoa2.getNome());
-    assertEquals(1, Dataset.size(), "Testando o tamanho do vetor apos a remoção por nome");
+    assertEquals(1, dataset.size(), "Testando o tamanho do vetor apos a remoção por nome");
     assertEquals(
         null,
         dataset.getPessoaByName(pessoa2.getNome()),
@@ -69,10 +69,12 @@ public class DatasetTest {
 
     dataset.replacePessoa(pessoa, pessoaNova);
 
-    assertEquals(2, Dataset.size(), "Teste se o tamanho permaneceu o mesmo");
+
+    assertEquals(2, dataset.size(), "Teste se o tamanho permaneceu o mesmo");
+
     assertEquals(
-        pessoaNova.getNome(),
-        dataset.getPessoaByName(pessoaNova.getNome()).getNome(),
+        pessoaNova,
+        dataset.getPessoaByName(pessoaNova.getNome()),
         "Testando se a pessoa nova esta no vetor ");
     assertEquals(
         null,
@@ -83,7 +85,7 @@ public class DatasetTest {
   @Test
   void testRemoveAll() {
     dataset.removeAll();
-    assertEquals(0, Dataset.size(), "Verificando se o tamanho foi zerado");
+    assertEquals(0, dataset.size(), "Verificando se o tamanho foi zerado");
     assertEquals(
         null, dataset.getPessoaByName(pessoa.getNome()), "Verificando se a pessoa foi removida");
   }
@@ -245,6 +247,6 @@ public class DatasetTest {
 
   @Test
   void testSize() {
-    assertEquals(2, Dataset.size());
+    assertEquals(2, dataset.size());
   }
 }

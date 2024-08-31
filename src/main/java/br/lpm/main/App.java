@@ -18,7 +18,7 @@ public class App {
   public static void main(String[] args) {
     Locale.setDefault(Locale.US);
     DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
+    
     String qtdePessoasAux =
         JOptionPane.showInputDialog("Digite a quantidade de pessoas que deseja cadastrar: ");
     int qtdePessoas = Integer.parseInt(qtdePessoasAux);
@@ -85,6 +85,6 @@ public class App {
       dataset.addPessoa(pessoa);
       JOptionPane.showMessageDialog(
           null, pessoa, "Pessoa Cadastrada", JOptionPane.INFORMATION_MESSAGE);
-    }
-  }
+    } 
+  } 
 }

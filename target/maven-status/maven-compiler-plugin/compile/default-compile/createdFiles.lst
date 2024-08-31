@@ -1,0 +1,8 @@
+br\lpm\business\Dataset.class
+br\lpm\business\Moradia.class
+br\lpm\business\Pessoa.class
+br\lpm\business\EstadoCivil.class
+br\lpm\business\Escolaridade.class
+br\lpm\business\Genero.class
+br\lpm\main\App.class
+br\lpm\business\Hobby.class

@@ -23,6 +23,7 @@ public class Pessoa {
     this.altura = 0f;
     this.peso = 0;
     this.renda = 0;
+    this.dataDeNascimento = LocalDate.parse("01/01/2024", fmt);
 
   }
 
