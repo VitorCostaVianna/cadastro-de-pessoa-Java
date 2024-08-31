@@ -19,17 +19,22 @@ public class Dataset {
   public void removePessoa(Pessoa pessoa) {
     for (int j = 0; j < size(); j++) {
       if (pessoa.equals(pessoas[j])) {
-        pessoas[j] = null;
-        i--;
-        break;
-      }
+        for (int p = j ; p < size() -1 ; p++ )
+        pessoas[p] = pessoas[p+1];
+       }
+       pessoas[size() -1 ] = null;
+       i--;
+       break;
     }
   }
 
   public void removePessoaByName(String name) {
     for (int j = 0; j < size(); j++) {
       if (pessoas[j].getNome() != null && pessoas[j].getNome().equalsIgnoreCase(name)) {
-        pessoas[j] = null;
+        for (int p = j ; p < size() -1  ; p++ ){
+          pessoas[p] = pessoas[p++];
+        }
+        pessoas[size() -1 ] = null;
         i--;
         break;
       }
