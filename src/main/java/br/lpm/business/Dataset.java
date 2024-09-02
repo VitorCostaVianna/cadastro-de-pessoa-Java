@@ -68,6 +68,10 @@ public class Dataset {
     i = 0; 
   }
 
+  public Pessoa[] getAll(){
+    return pessoas;
+  }
+
   public int size() {
     return i;
   }
