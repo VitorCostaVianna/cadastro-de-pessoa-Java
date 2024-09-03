@@ -197,6 +197,11 @@ public class Pessoa {
     return nome + " é feliz";
   }
 
+  public int calculaIdade(){
+    int anoAtual = LocalDate.now().getYear();  
+    return anoAtual -  dataDeNascimento.getYear();
+  }
+
   @Override
   public String toString() {
     return "\n -----Dados da Pessoa-----\n"

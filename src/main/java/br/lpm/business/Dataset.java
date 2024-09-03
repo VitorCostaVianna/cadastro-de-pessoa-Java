@@ -156,9 +156,19 @@ public class Dataset {
     return sum / (float) total;
   }
 
-  public float percentAdult() {
-    return 0;
+  public float percentAdult(){
+    int sum = 0;
+    int total =0;
+    for (int j = 0; j < size(); j++){
+      if (pessoas[j] != null && pessoas[j].getDataDeNascimento() != null) {
+        total++;
+        if (pessoas[j].calculaIdade() >=  18) {
+          sum++;
+        }
+    }
   }
+    return (sum/(float)total) * 100;
+}
 
   public float percentEstadoCivil(EstadoCivil estadoCivil) {
     int sum = 0;

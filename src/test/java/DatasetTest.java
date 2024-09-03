@@ -1,5 +1,8 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import br.lpm.business.Dataset;
 import br.lpm.business.Escolaridade;
 import br.lpm.business.EstadoCivil;
@@ -10,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class DatasetTest {
+   DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
   public static Pessoa pessoa;
   public static Pessoa pessoa2;
   public static Dataset dataset;
@@ -164,7 +168,16 @@ public class DatasetTest {
   }
 
   @Test
-  void testPercentAdult() {}
+  void testPercentAdult() {
+    pessoa.setDataDeNascimento(LocalDate.parse("20/07/2002" , fmt));
+    pessoa2.setDataDeNascimento(LocalDate.parse("14/09/2005" , fmt));
+    assertEquals(100f, dataset.percentAdult(), "Verificando porcentagem de Adultos");
+
+    pessoa.setDataDeNascimento(LocalDate.parse("20/07/2010" , fmt));
+    pessoa2.setDataDeNascimento(LocalDate.parse("14/09/2015" , fmt));
+    assertEquals(0, dataset.percentAdult(), "Verificando porcntagem sem adultos no vetor");
+
+  }
 
   @Test
   void testPercentEscolaridade() {
