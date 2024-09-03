@@ -169,7 +169,7 @@ public class Main {
   }
 
   private static void exibirEstatisticas() {
-    String mensagem = "Estatísticas:\n" +
+    String estatisticas= "Estatísticas:\n" +
                       "Altura Máxima: " + dataset.maxAltura() + " m\n" +
                       "Altura Média: " + dataset.avgAltura() + " m\n" +
                       "Altura Mínima: " + dataset.minAltura() + " m\n" +
@@ -182,7 +182,7 @@ public class Main {
                       "Moda do Estado Civil: " + dataset.modeEstadoCivil() + "\n" +
                       "Porcentagem de Pessoas Felizes: " + dataset.percentFeliz() + "%";
     
-    JOptionPane.showMessageDialog(null, mensagem, "Estatísticas", JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(null, estatisticas, "Estatísticas", JOptionPane.INFORMATION_MESSAGE);
 }
 
 
