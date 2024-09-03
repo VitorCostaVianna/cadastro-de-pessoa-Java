@@ -33,6 +33,7 @@ public class Main {
       "Cadastrar Pessoa",
       "Remover Pessoa",
       "Pesquisar Pessoa",
+      "Estatisticas",
       "Exibir Histograma de Formação Acadêmica",
       "Exibir Grafico de torta de distribuição Academica",
       "Sair"
@@ -63,12 +64,15 @@ public class Main {
           pesquisarPessoa();
           break;
         case 3:
-          histogramaFormacaoAcadêmica();
+          exibirEstatisticas();
           break;
         case 4:
-          pieEstadoCivil();
+          histogramaFormacaoAcadêmica();
           break;
         case 5:
+          pieEstadoCivil();
+          break;
+        case 6:
           JOptionPane.showMessageDialog(null, "Saindo do programa.");
           break;
         default:
@@ -154,33 +158,53 @@ public class Main {
   public static void pesquisarPessoa() {
     String pessoa = JOptionPane.showInputDialog("Digite o nome da pessoa que deseja encontrar: ");
     Pessoa pessoaEncontrada = dataset.getPessoaByName(pessoa);
-    
+
     if (pessoaEncontrada != null) {
-        JOptionPane.showMessageDialog(null, pessoaEncontrada, "Pessoa Encontrada", JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(
+          null, pessoaEncontrada, "Pessoa Encontrada", JOptionPane.INFORMATION_MESSAGE);
     } else {
-        JOptionPane.showMessageDialog(null, "Pessoa não encontrada.", "Erro", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(
+          null, "Pessoa não encontrada.", "Erro", JOptionPane.ERROR_MESSAGE);
     }
   }
+
+  private static void exibirEstatisticas() {
+    String mensagem = "Estatísticas:\n" +
+                      "Altura Máxima: " + dataset.maxAltura() + " m\n" +
+                      "Altura Média: " + dataset.avgAltura() + " m\n" +
+                      "Altura Mínima: " + dataset.minAltura() + " m\n" +
+                      "Peso Máximo: " + dataset.maxPeso() + " kg\n" +
+                      "Peso Mínimo: " + dataset.minPeso() + " kg\n" +
+                      "Peso Médio: " + dataset.avgPeso() + " kg\n" +
+                      "Porcentagem de Adultos: " + dataset.percentAdult() + "%\n" +
+                      "Moda da Moradia: " + dataset.modeMoradia() + "\n" +
+                      "Moda da Escolaridade: " + dataset.modeEscolaridade() + "\n" +
+                      "Moda do Estado Civil: " + dataset.modeEstadoCivil() + "\n" +
+                      "Porcentagem de Pessoas Felizes: " + dataset.percentFeliz() + "%";
+    
+    JOptionPane.showMessageDialog(null, mensagem, "Estatísticas", JOptionPane.INFORMATION_MESSAGE);
+}
+
 
   public static void histogramaFormacaoAcadêmica() {
 
     Pessoa[] listaPessoas = dataset.getAll();
-    Escolaridade[] listaEscolaridades = Escolaridade.values();
-    int[] contagemEscolaridades = new int[Escolaridade.values().length];
+    Escolaridade[] tipoEscolaridades = Escolaridade.values();
+    int[] contEscolaridades = new int[Escolaridade.values().length];
 
     for (int i = 0; i < dataset.size(); i++) {
       Escolaridade escolaridade = listaPessoas[i].getEscolaridade();
-      for (int j = 0; j < contagemEscolaridades.length; j++) {
-        if (listaEscolaridades[j] == escolaridade) {
-          contagemEscolaridades[j]++;
+      for (int j = 0; j < contEscolaridades.length; j++) {
+        if (tipoEscolaridades[j] == escolaridade) {
+          contEscolaridades[j]++;
         }
       }
     }
 
     DefaultCategoryDataset datasetGrafico = new DefaultCategoryDataset();
-    for (int i = 0; i < contagemEscolaridades.length; i++) {
+    for (int i = 0; i < contEscolaridades.length; i++) {
       datasetGrafico.addValue(
-          contagemEscolaridades[i], "Formação Acadêmica", listaEscolaridades[i].name());
+          contEscolaridades[i], "Formação Acadêmica", tipoEscolaridades[i].name());
     }
 
     JFreeChart grafico =
@@ -212,9 +236,9 @@ public class Main {
     DefaultPieDataset<String> datasetGrafico = new DefaultPieDataset<>();
     datasetGrafico.setValue("Solteiro", dataset.percentEstadoCivil(EstadoCivil.SOLTEIRO));
     datasetGrafico.setValue("Casado", dataset.percentEstadoCivil(EstadoCivil.CASADO));
-    datasetGrafico.setValue("Viúvo", dataset.percentEstadoCivil(EstadoCivil.VIUVO));
-    datasetGrafico.setValue("Separado", dataset.percentEstadoCivil(EstadoCivil.SEPARADO));
     datasetGrafico.setValue("Divorciado", dataset.percentEstadoCivil(EstadoCivil.DIVORCIADO));
+    datasetGrafico.setValue("Separado", dataset.percentEstadoCivil(EstadoCivil.SEPARADO));
+    datasetGrafico.setValue("Viúvo", dataset.percentEstadoCivil(EstadoCivil.VIUVO));
 
     JFreeChart grafico =
         ChartFactory.createPieChart(
