@@ -79,7 +79,7 @@ public class Main {
           JOptionPane.showMessageDialog(null, "Opção inválida!");
           break;
       }
-    } while (escolha != 5);
+    } while (escolha != 6);
   }
 
   public static void cadastrarPessoas() {
