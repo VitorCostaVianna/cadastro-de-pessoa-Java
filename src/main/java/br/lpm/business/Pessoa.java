@@ -79,7 +79,9 @@ public class Pessoa {
   }
 
   public void setGenero(Genero genero) {
-    this.genero = genero;
+    if (genero != null){
+      this.genero = genero;
+    }
   }
 
   public Float getAltura() {
@@ -117,7 +119,9 @@ public class Pessoa {
   }
 
   public void setNaturalidade(String naturalidade) {
-    this.naturalidade = naturalidade;
+    if (naturalidade != null){
+      this.naturalidade = naturalidade;
+    }
   }
 
   public Hobby getHobby() {
@@ -125,7 +129,9 @@ public class Pessoa {
   }
 
   public void setHobby(Hobby hobby) {
-    this.hobby = hobby;
+    if (hobby != null){
+      this.hobby = hobby;
+    }
   }
 
   public EstadoCivil getEstadoCivil() {
@@ -133,7 +139,9 @@ public class Pessoa {
   }
 
   public void setEstadoCivil(EstadoCivil estadoCivil) {
-    this.estadoCivil = estadoCivil;
+    if (estadoCivil != null){
+      this.estadoCivil = estadoCivil;
+    }
   }
 
   public Escolaridade getEscolaridade() {
@@ -141,7 +149,9 @@ public class Pessoa {
   }
 
   public void setEscolaridade(Escolaridade escolaridade) {
-    this.escolaridade = escolaridade;
+    if (escolaridade != null){
+      this.escolaridade = escolaridade;
+    }
   }
 
   public boolean getFeliz() {
@@ -157,7 +167,9 @@ public class Pessoa {
   }
 
   public void setMoradia(Moradia moradia) {
-    this.moradia = moradia;
+    if (moradia != null){
+      this.moradia = moradia;
+    }
   }
 
   private boolean validaRenda(float renda) {
@@ -174,7 +186,7 @@ public class Pessoa {
       char letraNome = nome.charAt(i);
       if (!((letraNome >= 'a' && letraNome <= 'z')
           || (letraNome >= 'A' && letraNome <= 'Z')
-          || letraNome == ' ')) {
+          || letraNome == ' ' && nome != null)) {
         return false;
       }
     }
@@ -183,7 +195,7 @@ public class Pessoa {
 
   public boolean validaDataDeNascimento(LocalDate dataDeNascimento) {
     LocalDate now = LocalDate.now();
-    return (dataDeNascimento.isBefore(now));
+    return (dataDeNascimento.isBefore(now) && dataDeNascimento != null);
   }
 
   public boolean validaAltura(Float altura) {

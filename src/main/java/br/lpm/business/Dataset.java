@@ -3,17 +3,17 @@ package br.lpm.business;
 public class Dataset {
   private Pessoa[] pessoas;
   private static final int MAX_PESSOAS = 3;
-  private int i ;
+  private int numPessoasVetor;
 
   public Dataset() {
     pessoas = new Pessoa[MAX_PESSOAS];
-    this.i = 0;
+    this.numPessoasVetor = 0;
   }
 
   public void addPessoa(Pessoa pessoa) {
     if (size() < MAX_PESSOAS) {
-      pessoas[i] = pessoa;
-      i++;
+      pessoas[numPessoasVetor] = pessoa;
+      numPessoasVetor++;
     }
   }
 
@@ -24,7 +24,7 @@ public class Dataset {
           pessoas[p] = pessoas[p + 1];
         }
         pessoas[size() - 1] = null;
-        i--;
+        numPessoasVetor--;
         break; 
       }
     }
@@ -37,7 +37,7 @@ public class Dataset {
           pessoas[p] = pessoas[p + 1];
         }
         pessoas[size() - 1] = null; 
-        i--; 
+        numPessoasVetor--; 
         break; 
       }
     }
@@ -65,7 +65,7 @@ public class Dataset {
     for (int j = 0; j < size(); j++) {
       pessoas[j] = null;
     }
-    i = 0; 
+    numPessoasVetor = 0; 
   }
 
   public Pessoa[] getAll(){
@@ -73,7 +73,7 @@ public class Dataset {
   }
 
   public int size() {
-    return i;
+    return numPessoasVetor;
   }
 
   public float maxAltura() {

@@ -89,7 +89,13 @@ public class Main {
 
     String dataDeAniversarioAux =
         JOptionPane.showInputDialog("Digite a data de aniversário (dd/MM/yyyy): ");
-    LocalDate dataDeAniversario = LocalDate.parse(dataDeAniversarioAux, fmt);
+        LocalDate dataDeAniversario = null;
+    if (dataDeAniversarioAux != null) {
+      dataDeAniversario = LocalDate.parse(dataDeAniversarioAux, fmt);
+    }
+    else {
+      JOptionPane.showMessageDialog(null, "Nenhuma data foi inserida! ");
+    }
 
     Genero genero =
         Genero.valueOf(
@@ -108,12 +114,12 @@ public class Main {
         Hobby.valueOf(
             JOptionPane.showInputDialog(
                 "Digite o hobby [ARTE, ESPORTE, CINEMA, LIVRO, MÚSICA, CULINÁRIA, GAME, NENHUM]:"
-                    + " "));
+                    + " ").toUpperCase());
 
     EstadoCivil estadoCivil =
         EstadoCivil.valueOf(
             JOptionPane.showInputDialog(
-                "Digite o estado civil (SOLTEIRO, CASADO, DIVORCIADO, VIUVO, SEPARADO): "));
+                "Digite o estado civil (SOLTEIRO, CASADO, DIVORCIADO, VIUVO, SEPARADO): ").toUpperCase());
 
     Escolaridade escolaridade =
         Escolaridade.valueOf(
@@ -128,7 +134,7 @@ public class Main {
     Moradia moradia =
         Moradia.valueOf(
             JOptionPane.showInputDialog(
-                "Digite o tipo de moradia [COM_FAMILIA, ALUGUEL, CASA_PROPRIA]: "));
+                "Digite o tipo de moradia [COM_FAMILIA, ALUGUEL, CASA_PROPRIA]: ").toUpperCase());
 
     Pessoa pessoa =
         new Pessoa(
@@ -169,22 +175,45 @@ public class Main {
   }
 
   private static void exibirEstatisticas() {
-    String estatisticas= "Estatísticas:\n" +
-                      "Altura Máxima: " + dataset.maxAltura() + " m\n" +
-                      "Altura Média: " + dataset.avgAltura() + " m\n" +
-                      "Altura Mínima: " + dataset.minAltura() + " m\n" +
-                      "Peso Máximo: " + dataset.maxPeso() + " kg\n" +
-                      "Peso Mínimo: " + dataset.minPeso() + " kg\n" +
-                      "Peso Médio: " + dataset.avgPeso() + " kg\n" +
-                      "Porcentagem de Adultos: " + dataset.percentAdult() + "%\n" +
-                      "Moda da Moradia: " + dataset.modeMoradia() + "\n" +
-                      "Moda da Escolaridade: " + dataset.modeEscolaridade() + "\n" +
-                      "Moda do Estado Civil: " + dataset.modeEstadoCivil() + "\n" +
-                      "Porcentagem de Pessoas Felizes: " + dataset.percentFeliz() + "%";
-    
-    JOptionPane.showMessageDialog(null, estatisticas, "Estatísticas", JOptionPane.INFORMATION_MESSAGE);
-}
+    String estatisticas =
+        "Estatísticas:\n"
+            + "Altura Máxima: "
+            + dataset.maxAltura()
+            + " m\n"
+            + "Altura Média: "
+            + dataset.avgAltura()
+            + " m\n"
+            + "Altura Mínima: "
+            + dataset.minAltura()
+            + " m\n"
+            + "Peso Máximo: "
+            + dataset.maxPeso()
+            + " kg\n"
+            + "Peso Mínimo: "
+            + dataset.minPeso()
+            + " kg\n"
+            + "Peso Médio: "
+            + dataset.avgPeso()
+            + " kg\n"
+            + "Porcentagem de Adultos: "
+            + dataset.percentAdult()
+            + "%\n"
+            + "Moda da Moradia: "
+            + dataset.modeMoradia()
+            + "\n"
+            + "Moda da Escolaridade: "
+            + dataset.modeEscolaridade()
+            + "\n"
+            + "Moda do Estado Civil: "
+            + dataset.modeEstadoCivil()
+            + "\n"
+            + "Porcentagem de Pessoas Felizes: "
+            + dataset.percentFeliz()
+            + "%";
 
+    JOptionPane.showMessageDialog(
+        null, estatisticas, "Estatísticas", JOptionPane.INFORMATION_MESSAGE);
+  }
 
   public static void histogramaFormacaoAcadêmica() {
 

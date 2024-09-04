@@ -62,7 +62,7 @@ Moradia::br.lpm.business
 --
 _-&lt;&lt;final&gt;&gt;MAX_PESSOAS: int_
 -pessoas : Pessoa[]
-- I : int
+- numPessoasVetor : int
 --
 +addPessoa(Pessoa): void
 +removePessoa(Pessoa): void
